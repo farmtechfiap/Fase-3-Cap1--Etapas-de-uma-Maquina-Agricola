@@ -1,3 +1,5 @@
+# Fase-3-Cap1--Etapas-de-uma-Maquina-Agricola
+
 # FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
@@ -26,11 +28,19 @@
 
 ## 📜 Descrição
 
-🌱 FarmTech Solutions - Fase 2: Sistema de Irrigação Inteligente
+🌱 FarmTech Solutions - Fase 3: Sistema de Irrigação Inteligente
 
-Este projeto compõe a Fase 2 do sistema de gestão agrícola da FarmTech Solutions, desenvolvido para a FIAP. O objetivo principal é evoluir o monitoramento climático da fase anterior para um sistema de irrigação automatizado e inteligente, utilizando um microcontrolador ESP32 (simulado via Wokwi).
+Este projeto compõe a Fase 3 do sistema de gestão agrícola da FarmTech Solutions, desenvolvido para a FIAP.
 
-O sistema toma decisões de irrigação em tempo real com base nos níveis de nutrientes (NPK), pH, umidade do solo e previsões meteorológicas via API.
+O objetivo do sistema é realizar o monitoramento inteligente de variáveis agrícolas importantes para o cultivo do milho, utilizando um ESP32 simulado no Wokwi.
+
+O sistema analisa condições do ambiente e toma decisões automáticas sobre a irrigação com base em:
+- umidade do solo;
+- pH;
+- disponibilidade de nutrientes NPK;
+- condição climática.
+
+Além da automação embarcada, os dados coletados foram exportados em formato CSV, integrados ao Oracle SQL Developer e utilizados em análises SQL para apoio à tomada de decisão.
 
 ## 🎯 Objetivo
 
@@ -39,8 +49,10 @@ Desenvolver um sistema embarcado capaz de:
 - monitorar variáveis importantes para o cultivo do milho;
 - simular a disponibilidade de nutrientes essenciais;
 - interpretar condições climáticas externas;
-- tomar uma decisão automática sobre ligar ou não a irrigação;
-- exibir todas as leituras e decisões no **Monitor Serial** do Wokwi.
+- tomar decisões automáticas sobre a irrigação;
+- armazenar os dados gerados em formato CSV;
+- integrar os dados ao Oracle Database;
+- realizar análises SQL utilizando banco de dados relacional.
 
 ---
 
@@ -54,7 +66,8 @@ O ESP32 realiza:
 - leitura dos botões de nutrientes N, P e K;
 - recepção da condição climática via serial;
 - análise das regras de negócio;
-- acionamento do relé que representa a bomba de irrigação.
+- acionamento do relé que representa a bomba de irrigação;
+- exportação dos dados em formato CSV pelo Serial Monitor.
 
 ### 2. Parte externa em Python
 O script Python consulta a API climática para a cidade de **São Paulo** e informa ao usuário qual comando deve ser enviado ao Wokwi:
@@ -104,14 +117,62 @@ O circuito no Wokwi é composto por:
 
 ---
 
+## 📊 Estrutura dos Dados
+
+Os dados gerados pelo sistema são exportados em formato CSV.
+
+Exemplo:
+cultura,umidade,ph,status,motivo
+MILHO,54.00,7.00,LIGADA,OK
+MILHO,76.00,7.00,DESLIGADA,Solo molhado
+MILHO,32.50,5.00,DESLIGADA,pH fora ideal
+
+## 🗄 Integração com Oracle Database
+
+O dataset gerado pelo sistema foi importado no Oracle SQL Developer para realização das análises.
+
+Foram realizadas consultas SQL envolvendo:
+- média da umidade;
+- média do pH;
+- total de ativações da bomba;
+- comparação entre irrigação ligada e desligada;
+- análise dos motivos de bloqueio da irrigação;
+- identificação das condições ideais de irrigação.
+
+## 📈 Exemplo de análise SQL
+
+SELECT status,
+       ROUND(AVG(umidade / 100), 2) AS media_umidade,
+       ROUND(AVG(ph / 100), 2) AS media_ph
+FROM sensores
+GROUP BY status;
+
+Essa consulta permite comparar o comportamento do sistema quando a irrigação está ligada ou desligada.
+
+## 📁 Estrutura do Projeto
+
+Fase-2-Cap-1-Mapa-do-Tesouro/
+│
+├── dados/
+│   └── sensores.csv
+│
+├── prints/
+│   └── consultas_sql.png
+│
+├── consultas.sql
+├── sketch.ino
+├── diagram.json
+├── README.md
+
 ## 🔧 Como executar o código
 ### 1. Simulador Wokwi (C/C++)
 
 1. Acesse o [Wokwi](https://wokwi.com/).
 2. Crie um novo projeto ESP32.
-3. Substitua o conteúdo da aba `diagram.json` pelo código de configuração de hardware do projeto.
-4. Substitua o conteúdo do `sketch.ino` pelo código C/C++ fornecido.
-5. Inicie a simulação (Play).
+3. Substitua o conteúdo da aba 'diagram.json' pelo código do projeto;
+4. Substitua o conteúdo do `sketch.ino` pelo código C/C++ fornecido;
+5. Inicie a simulação (Play);
+6. Abra o Monitor Serial.
 
 ### 2. Script Python (API de Clima)
 1. Certifique-se de ter o Python instalado na sua máquina.
@@ -128,11 +189,28 @@ Exemplo: COMANDO PARA O WOKWI: Digite 'S' e aperte Enter (Sem previsão de chuva
 
 ### 5. Volte à aba do Wokwi, clique na área do Monitor Serial, digite a letra correspondente (S ou C) e pressione Enter.
 
-## Imagens do circuito
+### 6. Exportação do dataset
+
+1. Execute a simulação no Wokwi;
+2. Gere os dados no Monitor Serial;
+3. Copie os dados exportados em CSV;
+4. Salve o arquivo como sensores.csv.
+
+### 7. Oracle SQL Developer
+
+1. Abra o Oracle SQL Developer;
+2. Crie a tabela sensores;
+3. Importe o arquivo sensores.csv;
+4. Execute o arquivo consultas.sql;
+5. Analise os resultados.
+
+## 📸 Imagens do Projeto
 
 ![Circuito 1](document/imagens/circuito1.png)
 
 ![Circuito 2](document/imagens/circuito2.png)
+
+## 📸 Consultas SQL
 
 ## 🗃 Histórico de lançamentos
 
@@ -150,5 +228,3 @@ Exemplo: COMANDO PARA O WOKWI: Digite 'S' e aperte Enter (Sem previsão de chuva
 ## 📋 Licença
 
 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
-
-
