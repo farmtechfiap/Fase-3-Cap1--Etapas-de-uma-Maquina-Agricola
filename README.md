@@ -1,4 +1,4 @@
-# Fase-3-Cap1--Etapas-de-uma-Maquina-Agricola
+# Fase 3 - Cap1 - Etapas de uma Máquina Agrícola
 
 # FIAP - Faculdade de Informática e Administração Paulista
 
@@ -122,10 +122,13 @@ O circuito no Wokwi é composto por:
 Os dados gerados pelo sistema são exportados em formato CSV.
 
 Exemplo:
+
+```csv
 cultura,umidade,ph,status,motivo
 MILHO,54.00,7.00,LIGADA,OK
 MILHO,76.00,7.00,DESLIGADA,Solo molhado
 MILHO,32.50,5.00,DESLIGADA,pH fora ideal
+```
 
 ## 🗄 Integração com Oracle Database
 
@@ -141,28 +144,34 @@ Foram realizadas consultas SQL envolvendo:
 
 ## 📈 Exemplo de análise SQL
 
+```sql
 SELECT status,
        ROUND(AVG(umidade / 100), 2) AS media_umidade,
        ROUND(AVG(ph / 100), 2) AS media_ph
 FROM sensores
 GROUP BY status;
+```
 
 Essa consulta permite comparar o comportamento do sistema quando a irrigação está ligada ou desligada.
 
 ## 📁 Estrutura do Projeto
 
-Fase-2-Cap-1-Mapa-do-Tesouro/
+```bash
+Fase-3-Cap1--Etapas-de-uma-Maquina-Agrícola/
 │
 ├── dados/
 │   └── sensores.csv
 │
 ├── prints/
-│   └── consultas_sql.png
+│   ├── 11_comparativo_status_irrigacao.png
+│   ├── 12_motivos_frequentes.png
+│   └── 18_media_umidade_ph_por_status.png
 │
 ├── consultas.sql
 ├── sketch.ino
 ├── diagram.json
-├── README.md
+└── README.md
+```
 
 ## 🔧 Como executar o código
 ### 1. Simulador Wokwi (C/C++)
