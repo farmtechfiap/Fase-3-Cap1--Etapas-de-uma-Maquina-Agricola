@@ -1,4 +1,5 @@
-SELECT * FROM sensores;
+SELECT * 
+FROM sensores;
 
 -- =========================================
 -- ANALISES DOS DADOS DOS SENSORES
