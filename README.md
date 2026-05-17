@@ -210,7 +210,39 @@ Exemplo: COMANDO PARA O WOKWI: Digite 'S' e aperte Enter (Sem previsão de chuva
 
 ![Circuito 2](document/imagens/circuito2.png)
 
-## 📸 Consultas SQL
+## 📸 Análises SQL
+
+## 📋 Visualização completa da tabela de sensores
+
+![Visualização completa da tabela](prints/01_importacao_tabela_sensores.png)
+
+---
+
+## 📊 Comparativo entre irrigação ligada e desligada
+
+![Comparativo entre ligada e desligada](prints/11_comparativo_status_irrigacao.png)
+
+---
+
+## 🧠 Motivos mais frequentes para bloqueio da irrigação
+
+![Motivos mais frequentes](prints/12_motivos_frequentes.png)
+
+---
+
+## 📈 Média da umidade e pH por status
+
+![Média](prints/18_media_umidade_ph_por_status.png)
+
+---
+
+## 🌾 Condições ideais de irrigação
+
+![Condições ideais](prints/23_condicoes_ideais_irrigacao.png)
+
+---
+
+> ℹ️ O projeto possui outras consultas e análises SQL adicionais disponíveis na pasta `prints/`.
 
 ## 🗃 Histórico de lançamentos
 
@@ -224,7 +256,7 @@ Exemplo: COMANDO PARA O WOKWI: Digite 'S' e aperte Enter (Sem previsão de chuva
     * 
 * 0.1.0 - XX/XX/2024
     *
-## Link de acesso ao vídeo que apresenta o funcionamento integral do sistema-  https://www.youtube.com/watch?v=dR6tntQKdCA
+## Link de acesso ao vídeo que apresenta o funcionamento integral do sistema-  
 ## 📋 Licença
 
 <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/agodoi/template">MODELO GIT FIAP</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://fiap.com.br">Fiap</a> está licenciado sobre <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>
