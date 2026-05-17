@@ -130,3 +130,5 @@ st.dataframe(media_status)
 st.subheader("📋 Dados Coletados")
 
 st.dataframe(df)
+
+# No terminal, execute o comando abaixo na pasta do projeto, para ver o Dashbord: py -m streamlit run dashboard.py

@@ -8,7 +8,7 @@
 
 <br>
 
-# Mapa do tesouro
+# 🌱 FarmTech Solutions
 
 ## Nome do grupo
 
@@ -28,7 +28,7 @@
 
 ## 📜 Descrição
 
-🌱 FarmTech Solutions - Fase 3: Sistema de Irrigação Inteligente
+🌱 FarmTech Solutions - Fase 3: Cap 1 - Etapas de uma Máquina Agrícola
 
 Este projeto compõe a Fase 3 do sistema de gestão agrícola da FarmTech Solutions, desenvolvido para a FIAP.
 
@@ -157,19 +157,18 @@ Essa consulta permite comparar o comportamento do sistema quando a irrigação e
 ## 📁 Estrutura do Projeto
 
 ```bash
-Fase-3-Cap1--Etapas-de-uma-Maquina-Agrícola/
-│
+Fase-3-Cap1-Etapas-de-uma-Maquina-Agricola/
+
+├── assets/
+├── config/
 ├── dados/
-│   └── sensores.csv
+├── document/
+├── machine_learning/
+├── wokwi/
 │
-├── prints/
-│   ├── 11_comparativo_status_irrigacao.png
-│   ├── 12_motivos_frequentes.png
-│   └── 18_media_umidade_ph_por_status.png
-│
+├── clima_api.py
 ├── consultas.sql
-├── sketch.ino
-├── diagram.json
+├── dashboard.py
 └── README.md
 ```
 
@@ -189,7 +188,7 @@ Fase-3-Cap1--Etapas-de-uma-Maquina-Agrícola/
    ```bash
    pip install requests
 
-### 3. Execute o script Python fornecido (clima_farmtech.py).
+### 3. Execute o script Python fornecido (clima_api.py).
 
 
 ### 4. O terminal Python exibirá as condições de São Paulo e instruirá qual comando enviar ao Wokwi.
@@ -215,43 +214,124 @@ Exemplo: COMANDO PARA O WOKWI: Digite 'S' e aperte Enter (Sem previsão de chuva
 
 ## 📸 Imagens do Projeto
 
-![Circuito 1](document/imagens/circuito1.png)
+![Circuito 1](document/imagens/Circuitos/circuito1.png)
 
-![Circuito 2](document/imagens/circuito2.png)
+![Circuito 2](document/imagens/Circuitos/circuito2.png)
+
+---
 
 ## 📸 Análises SQL
 
-## 📋 Visualização completa da tabela de sensores
+### 📋 Visualização completa da tabela de sensores
 
-![Visualização completa da tabela](prints/01_importacao_tabela_sensores.png)
-
----
-
-## 📊 Comparativo entre irrigação ligada e desligada
-
-![Comparativo entre ligada e desligada](prints/11_comparativo_status_irrigacao.png)
+![Visualização completa da tabela](document/imagens/SQL/01_importacao_tabela_sensores.png)
 
 ---
 
-## 🧠 Motivos mais frequentes para bloqueio da irrigação
+### 📊 Comparativo entre irrigação ligada e desligada
 
-![Motivos mais frequentes](prints/12_motivos_frequentes.png)
-
----
-
-## 📈 Média da umidade e pH por status
-
-![Média](prints/18_media_umidade_ph_por_status.png)
+![Comparativo entre ligada e desligada](document/imagens/SQL/11_comparativo_status_irrigacao.png)
 
 ---
 
-## 🌾 Condições ideais de irrigação
+### 🧠 Motivos mais frequentes para bloqueio da irrigação
 
-![Condições ideais](prints/23_condicoes_ideais_irrigacao.png)
+![Motivos mais frequentes](document/imagens/SQL/12_motivos_frequentes.png)
 
 ---
 
-> ℹ️ O projeto possui outras consultas e análises SQL adicionais disponíveis na pasta `prints/`.
+### 📈 Média da umidade e pH por status
+
+![Média](document/imagens/SQL/18_media_umidade_ph_por_status.png)
+
+---
+
+### 🌾 Condições ideais de irrigação
+
+![Condições ideais](document/imagens/SQL/23_condicoes_ideais_irrigacao.png)
+
+---
+
+> ℹ️ O projeto possui outras consultas e análises SQL adicionais disponíveis na pasta `document/imagens/SQL/`.
+
+## ▶️ Como executar o Dashboard
+
+Instale as bibliotecas necessárias:
+
+```bash
+py -m pip install streamlit pandas matplotlib
+
+```
+No terminal, execute o comando abaixo na pasta do projeto:
+
+```bash
+py -m streamlit run dashboard.py
+```
+
+Após executar, o Streamlit abrirá automaticamente no navegador.
+
+# 🤖 Programa Ir Além — Machine Learning
+
+Além da dashboard agrícola e das análises SQL, o projeto também conta com uma análise completa de Machine Learning utilizando o dataset `produtos_agricolas.csv`.
+
+A atividade foi desenvolvida em Jupyter Notebook (`.ipynb`) e contempla:
+
+- Análise exploratória dos dados (EDA);
+- Tratamento de duplicatas;
+- Avaliação de outliers;
+- Análise estatística e correlações;
+- Identificação do perfil ideal de solo/clima para culturas agrícolas;
+- Desenvolvimento de 5 modelos preditivos diferentes;
+- Comparação de desempenho entre modelos;
+- Avaliação utilizando métricas de classificação.
+
+## 📊 Principais análises realizadas
+
+- Distribuição das culturas agrícolas;
+- Correlação entre nutrientes e variáveis climáticas;
+- Comparação de temperatura, umidade e precipitação;
+- Avaliação do perfil agrícola de culturas como arroz, café e algodão;
+- Interpretação agronômica dos padrões encontrados no dataset.
+
+## 🤖 Modelos utilizados
+
+- KNN (K-Nearest Neighbors)
+- Regressão Logística
+- Decision Tree
+- Random Forest
+- SVM (Support Vector Machine)
+
+## 📁 Notebook da análise
+
+O notebook completo pode ser acessado em:
+
+```txt
+machine_learning/Colheita_de_Dados_e_Insights.ipynb
+```
+
+Caso o GitHub não renderize todos os outputs corretamente, recomenda-se abrir o notebook diretamente no Google Colab ou Jupyter Notebook.
+
+## 📷 Prints da análise
+
+### 🔥 Heatmap de Correlação
+
+![Heatmap](document/imagens/Machine_learning/01_heatmap_correlacao.png)
+
+---
+
+### 🤖 Comparação entre Modelos
+
+![Modelos](document/imagens/Machine_learning/02_comparacao_modelos.png)
+
+---
+
+### 🌾 Perfil Ideal das Culturas
+
+![Perfil Ideal](document/imagens/Machine_learning/03_perfil_ideal.png)
+
+---
+
+> ℹ️ O projeto possui análises adicionais disponíveis no notebook `machine_learning/Colheita_de_Dados_e_Insights.ipynb`.
 
 ## 🗃 Histórico de lançamentos
 
